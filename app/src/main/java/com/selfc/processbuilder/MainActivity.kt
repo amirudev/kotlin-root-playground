@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_pb_sudo -> {
                 try {
                     val pb = ProcessBuilder("sudo ls /")
-                    pb.directory(File("myDir"))
+                    pb.directory(File("Pictures"))
                     val log = File("log")
                     pb.redirectErrorStream(true)
 
@@ -54,6 +54,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun printLog(text: String) {
         val c = Calendar.getInstance()
 
-        tvLogContainer.text = "${tvLogContainer.text}\n${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH)}-${c.get(Calendar.DATE)} ${c.get(Calendar.HOUR)}:${c.get(Calendar.MINUTE)}:${c.get(Calendar.SECOND)}:${c.get(Calendar.MILLISECOND)} - ${text}"
+        tvLogContainer.text = "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH)}-${c.get(Calendar.DATE)} ${c.get(Calendar.HOUR)}:${c.get(Calendar.MINUTE)}:${c.get(Calendar.SECOND)}:${c.get(Calendar.MILLISECOND)} - ${text}\n${tvLogContainer.text}"
     }
 }
