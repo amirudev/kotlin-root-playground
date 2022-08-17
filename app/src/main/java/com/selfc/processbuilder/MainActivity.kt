@@ -29,22 +29,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_pb_sudo -> {
                 try {
                     val pb = ProcessBuilder("sudo ls /")
-                    pb.directory(File("Pictures"))
-                    val log = File("log")
-                    pb.redirectErrorStream(true)
+//                    pb.directory(File("Pictures"))
+//                    val log = File("log")
+//                    pb.redirectErrorStream(true)
 
     //                Request Min API Level 26
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                        pb.redirectOutput(ProcessBuilder.Redirect.appendTo(log))
+//                        pb.redirectOutput(ProcessBuilder.Redirect.appendTo(log))
                         val p = pb.start()
-                        assert(pb.redirectInput() == ProcessBuilder.Redirect.PIPE)
-                        assert(pb.redirectOutput().file() == log)
-                        assert(p.inputStream.read() == -1)
+//                        assert(pb.redirectInput() == ProcessBuilder.Redirect.PIPE)
+//                        assert(pb.redirectOutput().file() == log)
+//                        assert(p.inputStream.read() == -1)
+                        tvProcessBuilderResult.text = String(p.inputStream.readBytes())
                     } else {
                         tvProcessBuilderResult.text = "Minimum Android API Level is 26 and your phone is on ${android.os.Build.VERSION.SDK_INT}"
                     }
                 } catch (e: Exception) {
-                    tvProcessBuilderResult.text = "Exception occured \n ${e.toString()}"
+                    tvProcessBuilderResult.text = "Exception occured \n $e"
                     printLog(e.toString())
                 }
             }
